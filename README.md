@@ -51,7 +51,7 @@ webpack --watch ——监听
 > 
 直接输入npm run dev或者npm run prod
 -d 这个参数之前没介绍过，它的意思就是说包含 source maps，这个有什么用呢，就是让你在用浏览器调试的时候，可以很方便地定位到源文件，知道这个意思就好了，不用深究太多
-# 八、使用html-webpack-plugin
+### 八、使用html-webpack-plugin
 之前我们已经可以转化 js 文件了，但是一般来说，我们放在网页上的是 html 页面，所以需要这个插件来转化html页面
 这么多插件，我们不可能全都学，全都用，要用也是找最好的，最常用的来玩，而且学了一个，其他的也差不多，掌握方法就好。
 学习插件的第一步，是进入其主页，先把它的 readme 文档看看，至少知道它是干什么的，能解决什么问题，最后知道如何用就行了。
@@ -156,7 +156,7 @@ path是输出的文件夹，filename是链接的文件。
 >	})]
 > }
 > 
-# 九、使用 loader 处理 CSS 和 Sass
+### 九、使用 loader 处理 CSS 和 Sass
 > 
 > $ npm install --save-dev css-loader style-loader
 > 
@@ -209,7 +209,7 @@ path是输出的文件夹，filename是链接的文件。
 >	}
 > 
 执行webpack,就可以编译粗来了
-# 十、用sass-loader吧sass编译成css
+### 十、用sass-loader吧sass编译成css
 > 
 > $ npm install sass-loader node-sass --save-dev
 > 
@@ -266,7 +266,7 @@ path是输出的文件夹，filename是链接的文件。
 >	}
 > 
 执行webpack，会看到css效果出来了，但是都是写在html页面里的，下面这个插件就可以把 SASS 或 CSS 处理好后，放到一个 CSS 文件中
-# 十一、用 extract-text-webpack-plugin 把 CSS 分离成文件
+### 十一、用 extract-text-webpack-plugin 把 CSS 分离成文件
 > $ npm install --save-dev extract-text-webpack-plugin 
 > var ExtractTextPlugin = require("extract-text-webpack-plugin");
 > 
@@ -302,16 +302,19 @@ path是输出的文件夹，filename是链接的文件。
 > 
 > }
 > 
-# 十二、使用webpack-dev-server开发，在本地上开启服务，打开浏览器，注意webpack版本要3版本的
-> # 先全局安装
+### 十二、使用webpack-dev-server开发，在本地上开启服务，打开浏览器，注意webpack版本要3版本的
+>  先全局安装
 > 
 > $ npm install -g webpack-dev-server@2.9.7
 > 
 > $ npm install --save-dev webpack-dev-server@2.9.7
 > 
-# 先全局安装
-$ npm install -g webpack-dev-server@2.9.7
-$ npm install --save-dev webpack-dev-server@2.9.7
+ 先全局安装
+> 
+> $ npm install -g webpack-dev-server@2.9.7
+> 
+> $ npm install --save-dev webpack-dev-server@2.9.7
+> 
 默认运行是在localhost:8000端口，以下是它的参数，port为9000，open设置为自动打开浏览器
 > var HtmlWebpackPlugin = require('html-webpack-plugin');
 > 
@@ -347,7 +350,7 @@ $ npm install --save-dev webpack-dev-server@2.9.7
 >    "m-start":"webpack-dev-server --port 9000 --hot --host 填上自己电脑ip地址"//想要同步刷新的话加上"npm run m-start "
 > 
 > },
-# 十三、用clean-webpack-plugin清除文件
+### 十三、用clean-webpack-plugin清除文件
 > $ npm i clean-webpack-plugin --save-dev
 然后webpack.config.js如下：
 > const path = require('path')
