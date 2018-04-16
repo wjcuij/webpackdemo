@@ -39,5 +39,13 @@
 >   }
 > };
 > 
-
+entry 表示源文件，output 这边表示的是输出的目标文件，直接在终端上输入 webpack 就可以了。webpack 命令会去找 webpack.config.js 文件，并读取它的内容（源文件和目标文件），最后进行相应的处理。
+webpack -p——压缩
+webpack --watch ——监听
+改造webpack.json的script部分：
+> 
+>   "scripts": {
+    "dev": "webpack -d --watch",
+    "prod": "webpack -p"
+  },
 这是一个webpack测试，功能大概有同步调试端口，清除多余的打包文件，多页面开发，配置图片和压缩，其余功能正在引入中。。。
