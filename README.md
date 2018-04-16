@@ -265,4 +265,42 @@ path是输出的文件夹，filename是链接的文件。
 > 
 >	}
 > 
+执行webpack，会看到css效果出来了，但是都是写在html页面里的，下面这个插件就可以把 SASS 或 CSS 处理好后，放到一个 CSS 文件中
+# 十一、用 extract-text-webpack-plugin 把 CSS 分离成文件
+> $ npm install --save-dev extract-text-webpack-plugin 
+> var ExtractTextPlugin = require("extract-text-webpack-plugin");
+> 
+> module.exports = {
+> 
+>  module: {
+> 
+>   rules: [
+>
+>      {
+> 
+>      test: /\.css$/,
+> 
+>        use: ExtractTextPlugin.extract({
+> 
+>          fallback: "style-loader",
+> 
+>          use: "css-loader"
+> 
+>        })
+> 
+>      }
+>
+>    ]
+> 
+>  },
+> 
+>  plugins: [
+> 
+>    new ExtractTextPlugin("styles.css"),
+> 
+>   ]
+> 
+> }
+> 
+
 这是一个webpack测试，功能大概有同步调试端口，清除多余的打包文件，多页面开发，配置图片和压缩，其余功能正在引入中。。。
