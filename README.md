@@ -90,7 +90,6 @@ path是输出的文件夹，filename是链接的文件。
 > 
 >  output: {
 >    path: __dirname + '/dist',
-> 
 >    filename: 'app.bundle.js'
 > 
 >  },
