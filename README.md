@@ -61,40 +61,64 @@ webpack --watch ——监听
 > 
 修改下webpack.config.js
 > var HtmlWebpackPlugin = require('html-webpack-plugin');
-module.exports = {
-  entry: './src/app.js',
-  output: {
-    path: __dirname + '/dist',
-    filename: 'app.bundle.js'，
-  },
-  plugins: [new HtmlWebpackPlugin()]
-};
+> 
+> module.exports = {
+> 
+>  entry: './src/app.js',
+> 
+>  output: {
+> 
+>    path: __dirname + '/dist',
+> 
+>    filename: 'app.bundle.js'，
+> 
+>  },
+> 
+>  plugins: [new HtmlWebpackPlugin()]
+> 
+> };
 > 
 然后执行刚才的npm run dev，就会在dist文件夹自动生成index.html
 path是输出的文件夹，filename是链接的文件。
 修改config如下：
 > 
 > var HtmlWebpackPlugin = require('html-webpack-plugin');
+> 
 > module.exports = {
+> 
 >   entry: './src/app.js',
+> 
 >  output: {
 >    path: __dirname + '/dist',
+> 
 >    filename: 'app.bundle.js'
+> 
 >  },
+> 
 >  plugins: [new HtmlWebpackPlugin({
+> 
 >    template: './src/index.html',
+> 
 >  })]
+> 
 > };
 > 
 接着新建 src/index.html 文件，内容如下：
 > 
 > <html lang="en">
+> 
 > <head>
+> 
 >  <meta charset="UTF-8">
+> 
 >  <title>Hello World</title>
+> 
 > </head>
+> 
 > <body>
+> 
 > <script type="text/javascript" src="app.bundle.js"></script></body>
+> 
 > </html>
 > 
 还可以加参数
@@ -136,29 +160,53 @@ path是输出的文件夹，filename是链接的文件。
 # 九、使用 loader 处理 CSS 和 Sass
 > 
 > $ npm install --save-dev css-loader style-loader
+> 
 > webpack.config.js参数如下
+> 
 > var HtmlWebpackPlugin = require('html-webpack-plugin')
+> 
 > module.exports = {
+> 
 >	entry:'./src/js/app.js',//输入的js文件路径
+> 
 >	output:{
+> 
 >		path:__dirname + '/dist',
+> 
 >		filename:'./app.bundle.js'
+> 
 >	},
+> 
 >	plugins:[
+> 
 >	new HtmlWebpackPlugin({
+> 
 >		title: "hello world",//页面名字，比页面的直接写title的优先级低
+> 
 >		template: './src/index.html',//模板路径文件
+> 
 >   filename: 'app.html',//输出文件名字
+> 
 >    minify: {
+> 
 >      collapseWhitespace: true,//这个可以把生成的 index.html 文件的内容的没用空格去掉，减少空间。
+> 
 >    },
+> 
 >    hash: true,//为了更好的 cache,可以在文件名后加个 hash
+> 
 >	})],
+> 
 >	module:{
+> 
 >		rules:[{
+> 
 >			test:/\.css$/,
+> 
 >			use:['style-loader','css-loader']
+> 
 >		}]
+> 
 >	}
 > 
 执行webpack,就可以编译粗来了
