@@ -124,7 +124,6 @@ module.exports = {
 > $ npm install --save-dev css-loader style-loader
 > webpack.config.js参数如下
 > var HtmlWebpackPlugin = require('html-webpack-plugin')
-
 module.exports = {
 	entry:'./src/js/app.js',//输入的js文件路径
 	output:{
