@@ -1,23 +1,23 @@
-# webpackdemo
-# webpack版本3.6.0
-# 命令： webpack-dev-server
+### webpackdemo
+### webpack版本3.6.0
+### 命令： webpack-dev-server
 以下是大概安装的过程：
-# 一、先安装nodejs，https://nodejs.org/en/
-# 二、在命令行终端运行命令：
+### 一、先安装nodejs，https://nodejs.org/en/
+### 二、在命令行终端运行命令：
 > $ npm install -g webpack
 检测是否成功：webpack -v
-# 三、新建一个目录：
+### 三、新建一个目录：
 > $ mkdir hello-webpack
-# 四、npm init——然后填写资料
+### 四、npm init——然后填写资料
 > description————描述
 > 
 > entry point————入口点
 执行完毕后会发现在当前目录多了一个package.json文件，都是刚才你填的的内容信息。
-# 五、集成webpack：
+### 五、集成webpack：
 > $ npm install --save-dev webpack@版本号，最好不要最新的
 > 
 安装完成后在去看package.json文件，多了devDependencies:{webpack},说的是现在这个项目依赖webpack。
-# 六、创建出口文件：
+### 六、创建出口文件：
 首先创建一个目录“src”，然后在该目录下创建一个app.js
 > console.log('hello webpack!')
 > 
@@ -30,7 +30,7 @@
 > $ webpack --watch ./src/app.js ./dist/app.bundle.js  ————监听
 > 
 > $ webpack -p ./src/app.js ./dist/app.bundle.js  ————压缩出口文件
-# 七、配置文件webpack.config.js
+### 七、配置文件webpack.config.js
 
 > module.exports = {
 >   entry: './src/app.js',
