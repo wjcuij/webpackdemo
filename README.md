@@ -213,4 +213,56 @@ path是输出的文件夹，filename是链接的文件。
 > 
 > $ npm install sass-loader node-sass --save-dev
 > 
+### 可能有点慢，配置文件如下：
+> 
+> var HtmlWebpackPlugin = require('html-webpack-plugin')
+> 
+> module.exports = {
+> 
+> 	entry:'./src/js/app.js',//输入的js文件路径
+> 
+>	output:{
+> 
+>		path:__dirname + '/dist',
+> 
+>		filename:'./app.bundle.js'
+> 
+>	},
+> 
+>	plugins:[
+> 
+>	new HtmlWebpackPlugin({
+> 
+>		title: "hello world",//页面名字，比页面的直接写title的优先级低
+> 
+>		template: './src/index.html',//模板路径文件
+> 
+>   filename: 'app.html',//输出文件名字
+> 
+>    minify: {
+> 
+>       collapseWhitespace: true,//这个可以把生成的 index.html 文件的内容的没用空格去掉，减少空间。
+>       
+>    },
+> 
+>     hash: true,//为了更好的 cache,可以在文件名后加个 hash
+> 
+>	})],
+> 
+>	module:{
+> 
+>		rules:[{
+> 
+>			test:/\.css$/,
+> 
+>			use:['style-loader','css-loader']
+> 
+>		},{	test:/\.scss$/,
+> 
+>			use:['style-loader','css-loader','sass-loader']
+> 
+>		}]
+> 
+>	}
+> 
 这是一个webpack测试，功能大概有同步调试端口，清除多余的打包文件，多页面开发，配置图片和压缩，其余功能正在引入中。。。
