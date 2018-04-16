@@ -302,5 +302,213 @@ path是输出的文件夹，filename是链接的文件。
 > 
 > }
 > 
-
+# 十二、使用webpack-dev-server开发，在本地上开启服务，打开浏览器，注意webpack版本要3版本的
+> # 先全局安装
+> 
+> $ npm install -g webpack-dev-server@2.9.7
+> 
+> $ npm install --save-dev webpack-dev-server@2.9.7
+> 
+# 先全局安装
+$ npm install -g webpack-dev-server@2.9.7
+$ npm install --save-dev webpack-dev-server@2.9.7
+默认运行是在localhost:8000端口，以下是它的参数，port为9000，open设置为自动打开浏览器
+> var HtmlWebpackPlugin = require('html-webpack-plugin');
+> 
+> const ExtractTextPlugin = require('extract-text-webpack-plugin');
+> 
+> module.exports = {
+> 
+>   entry: './src/app.js',
+> 
+>   ...
+> 
+>   devServer: {
+> 
+>    port: 9000,
+> 
+>    open: true
+> 
+>  },
+> 
+>  ...
+> 
+> };
+> 如果要在真机上测试，要在package.json配置如下：
+> 
+> "scripts": {
+> 
+>    "test": "echo \"Error: no test specified\" && exit 1",
+> 
+>    "dev": "webpack-dev-server",
+> 
+>    "prod": "webpack -p",
+> 
+>    "m-start":"webpack-dev-server --port 9000 --hot --host 填上自己电脑ip地址"//想要同步刷新的话加上"npm run m-start "
+> 
+> },
+# 十三、用clean-webpack-plugin清除文件
+> $ npm i clean-webpack-plugin --save-dev
+然后webpack.config.js如下：
+> const path = require('path')
+> 
+> ...
+> const CleanWebpackPlugin = require('clean-webpack-plugin');
+> 
+> let pathsToClean = [
+>   'dist',
+> ]
+> 
+> module.exports = {
+> 
+> entry: {
+> 
+>    "app.bundle": './src/app.js'
+> 
+>  },
+> 
+>  output: {
+> 
+>     path: path.resolve(__dirname, 'dist'),
+> 
+>    filename: '[name].[chunkhash].js'
+> 
+>   },
+> 
+>   ...
+> 
+>   plugins: [
+> 
+>    new CleanWebpackPlugin(pathsToClean),
+> 
+>    ...
+> 
+>    new ExtractTextPlugin('style.css')
+> 
+>   ],
+> 
+>  ...
+> 
+> };
+> 
+运行npm run drop，就可以看到dist文件夹下面多余的文件不见了。
+### 十四、webpack配置多个html页面
+> var HtmlWebpackPlugin = require('html-webpack-plugin')//html页面识别插件
+> 
+> const Ex = require('extract-text-webpack-plugin')//把 CSS 分离成文件
+> 
+> const path = require('path')
+> 
+> const CleanWP = require('clean-webpack-plugin');//清除多余文件
+> 
+> let pathsToClean = [
+> 
+>  'dist',
+> 
+> ]
+> 
+> module.exports = {
+> 
+> 	entry:{
+> 
+> 		"app.bundle":'./src/js/app.js',
+> 
+> 		"contact": './src/js/contact.js'
+> 
+> },//输入的js文件路径,文件名：文件路径
+> 
+> output:{
+> 
+> 		path:path.resolve(__dirname, 'dist'),//输出文件夹
+> 
+> 		filename:'js/[name].[chunkhash].js'//输出js文件
+> 
+> 	},
+> 
+> 	devServer:{//调试端口
+> 
+> 	    port:9000,
+> 
+> 	    open:true
+> 
+> 	  },
+> 
+> 	plugins:[
+> 
+> 	new HtmlWebpackPlugin({
+> 
+> 		title: "hello world",//页面名字，比页面的直接写title的优先级低
+> 
+> 		template: './src/index.html',//模板路径文件
+> 
+>     filename: 'index.html',//输出文件页面名字
+> 
+> minify: {
+> 
+>       collapseWhitespace: true,//这个可以把生成的 index.html 文件的内容的没用空格去掉，减少空间。
+> 
+>     },
+> 
+>     hash: true,//为了更好的 cache,可以在文件名后加个 hash
+> 
+>      excludeChunks: ['contact']
+> 
+> 	}),
+> 
+> 	new HtmlWebpackPlugin({
+> 
+> template: './src/contact.html',//模板路径文件
+> 
+> 		filename: 'contact.html',//输出文件页面名字
+> 
+>     minify: {
+> 
+>       collapseWhitespace: true,//这个可以把生成的 index.html 文件的内容的没用空格去掉，减少空间。
+> 
+>     },
+> 
+>     hash: true,//为了更好的 cache,可以在文件名后加个 hash
+> 
+>     chunks: ['contact'],
+> 	}),
+> 
+> 	new CleanWP(pathsToClean),//清除目录的多余文件
+> 
+> 	new Ex('css/[name].css')//输出文件的css
+> 
+> 	],
+> 
+> 	module:{
+> 
+> 		rules:[{
+> 
+> 			test:/\.css$/,
+> 
+> 			use:Ex.extract({//也把css文件打包
+> 
+> 	          fallback: "style-loader",
+> 
+> 	          use: "css-loader"
+> 
+> 	        })
+> 
+> 		},{
+> 
+>         test: /\.scss$/,
+> 
+>         use: Ex.extract({//sass打包在一起
+> 
+>         	fallback:'style-loader',
+> 
+>         	use:['css-loader', 'sass-loader']
+> 
+>         })
+> 
+>       }
+> 
+>       ]
+> 
+> 	}
+> 
+> }
 这是一个webpack测试，功能大概有同步调试端口，清除多余的打包文件，多页面开发，配置图片和压缩，其余功能正在引入中。。。
