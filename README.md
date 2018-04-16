@@ -99,21 +99,37 @@ path是输出的文件夹，filename是链接的文件。
 > 
 还可以加参数
 > var HtmlWebpackPlugin = require('html-webpack-plugin')
+> 
 > module.exports = {
+> 
 > 	entry:'./src/app.js',
+> 
 >	output:{
+> 
 >		path:__dirname + '/dist',
+> 
 >		filename:'./app.bundle.js'
+> 
 >	},
+> 
 >	plugins:[
+> 
 >	new HtmlWebpackPlugin({
+> 
 >		title: "hello world",//页面名字，比页面的直接写title的优先级低
+> 
 >		template: './src/index.html',//模板路径文件
+> 
 >    filename: 'app.html',//输出文件名字
+> 
 >    minify: {
+> 
 >      collapseWhitespace: true,//这个可以把生成的 index.html 文件的内容的没用空格去掉，减少空间。
+> 
 >    },
+> 
 >    hash: true,//为了更好的 cache,可以在文件名后加个 hash
+> 
 >	})]
 > }
 > 
