@@ -15,6 +15,7 @@
 执行完毕后会发现在当前目录多了一个package.json文件，都是刚才你填的的内容信息。
 # 五、集成webpack：
 > $ npm install --save-dev webpack@版本号，最好不要最新的
+> 
 安装完成后在去看package.json文件，多了devDependencies:{webpack},说的是现在这个项目依赖webpack。
 # 六、创建出口文件：
 首先创建一个目录“src”，然后在该目录下创建一个app.js
@@ -27,7 +28,16 @@
 意思就是说把app.js作为源文件，把转化后的结果放到app.bundle.js文件中
 > 
 > $ webpack --watch ./src/app.js ./dist/app.bundle.js  ————监听
+> 
 > $ webpack -p ./src/app.js ./dist/app.bundle.js  ————压缩出口文件
+# 七、配置文件webpack.config.js
 
+> module.exports = {
+>   entry: './src/app.js',
+>   output: {
+>     filename: './dist/app.bundle.js'
+>   }
+> };
+> 
 
 这是一个webpack测试，功能大概有同步调试端口，清除多余的打包文件，多页面开发，配置图片和压缩，其余功能正在引入中。。。
