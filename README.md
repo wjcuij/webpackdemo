@@ -10,6 +10,7 @@
 > $ mkdir hello-webpack
 # 四、npm init——然后填写资料
 > description————描述
+> 
 > entry point————入口点
 执行完毕后会发现在当前目录多了一个package.json文件，都是刚才你填的的内容信息。
 # 五、集成webpack：
@@ -18,10 +19,13 @@
 # 六、创建出口文件：
 首先创建一个目录“src”，然后在该目录下创建一个app.js
 > console.log('hello webpack!')
+> 
 然后在主目录创建一个dist出口文件。
 现在开始转义：
 > $ webpack ./src/app.js ./dist/app.bundle.js
+> 
 意思就是说把app.js作为源文件，把转化后的结果放到app.bundle.js文件中
+> 
 > $ webpack --watch ./src/app.js ./dist/app.bundle.js  ————监听
 > $ webpack -p ./src/app.js ./dist/app.bundle.js  ————压缩出口文件
 
